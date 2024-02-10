@@ -1,10 +1,10 @@
 import { Button } from "@/components/ui/button";
+import { UserButton } from "@clerk/nextjs";
 
 export default function Home() {
   return (
-    <div className="bg-red-300">
-      Diwan Sachidu
-      <Button variant="ghost">click here</Button>
+    <div className="">
+      {/* <UserButton afterSignOutUrl="/"></UserButton> */}
     </div>
   );
 }
