@@ -9,6 +9,7 @@ interface SidebarItemProps {
   icon: LucideIcon;
   label: string;
   href: string;
+  data?: object;
 };
 
 export const SidebarItem = ({

@@ -9,6 +9,7 @@ import { Button } from "@/components/ui/button";
 import { isTeacher } from "@/lib/teacher";
 
 import { SearchInput } from "./search-input";
+import { ModeToggle } from "./ui/mode-toggle";
 
 export const NavbarRoutes = () => {
   const { userId } = useAuth();
@@ -25,7 +26,8 @@ export const NavbarRoutes = () => {
           <SearchInput />
         </div>
       )}
-      <div className="flex gap-x-2 ml-auto">
+      <div className="flex gap-x-2 ml-auto items-center">
+        <ModeToggle/>
         {isTeacherPage || isCoursePage ? (
           <Link href="/">
             <Button size="sm" variant="ghost">
