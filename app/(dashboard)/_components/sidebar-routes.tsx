@@ -1,6 +1,6 @@
 "use client";
 
-import { BarChart, Braces, Code, Compass, Layout, List, FileCheck, Terminal } from "lucide-react";
+import { BarChart, Braces, Code, Compass, Layout, List, FileCheck, Terminal, Image } from "lucide-react";
 import { usePathname } from "next/navigation";
 
 import { SidebarItem } from "./sidebar-item";
@@ -33,8 +33,13 @@ const guestRoutes = [
   },
   {
     icon: FileCheck,
-    label: "Notes",
-    href: "/notes",
+    label: "Coding Snippets",
+    href: "/code-snippets",
+  },
+  {
+    icon: Image,
+    label: "Image to Code",
+    href: "/image-to-code",
   },
 ];
 
