@@ -1,15 +1,11 @@
-"use client";
-
-import { zodResolver } from "@hookform/resolvers/zod";
+import z from "zod";
+import { useRouter } from "next/navigation";
+import { useState } from "react";
 import { useForm } from "react-hook-form";
-import { z } from "zod";
-import axios from "axios";
-
+import { zodResolver } from "@hookform/resolvers/zod";
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
-import toast from "react-hot-toast";
 
+import { DialogContent, DialogTrigger, Dialog } from "@/components/ui/dialog";
 import {
   Form,
   FormControl,
@@ -18,29 +14,27 @@ import {
   FormLabel,
   FormMessage,
 } from "@/components/ui/form";
-
-import { DialogContent, DialogTrigger, Dialog } from "@/components/ui/dialog";
-import { useState } from "react";
-import { useRouter } from "next/navigation";
+import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
+import axios from "axios";
+import toast from "react-hot-toast";
 
 const FormSchema = z.object({
-  title: z.string().min(5, {
-    message: "name must be at least 2 characters.",
+  prompt: z.string().min(10, {
+    message: "Prompt must be at least 10 characters.",
   }),
-  code: z.string().min(10, {
-    message: "Description must be at least 10 characters.",
-  }),
+  generatedCode: z.string().min(10).optional()
 });
 
-export const EditDialogBox = ({ dataSet }: any) => {
+export const EditCodeBlock = ({ dataSet }: any) => {
   const router = useRouter();
   const [isDialogOpen, setIsDialogOpen] = useState(true);
 
   const form = useForm<z.infer<typeof FormSchema>>({
     resolver: zodResolver(FormSchema),
     defaultValues: {
-      title: `${dataSet.title}`,
-      code: `${dataSet.code}`,
+      prompt: `${dataSet.prompt}`,
+      generatedCode: `${dataSet.generatedCode}`,	
     },
   });
 
@@ -48,10 +42,10 @@ export const EditDialogBox = ({ dataSet }: any) => {
 
   async function onSubmit(data: z.infer<typeof FormSchema>) {
     try {
-      await axios.patch(`/api/codeSnippets/${codeId}`, data);
-      toast.success("Code snippet updated");
+      await axios.patch(`/api/codeGenerator/${codeId}`, { prompt: data.prompt });
+      toast.success("Prompt Name updated");
       console.log(data);
-      form.reset();
+    //   form.reset();
       setIsDialogOpen(false);
       router.refresh();
     } catch (error) {
@@ -67,7 +61,7 @@ export const EditDialogBox = ({ dataSet }: any) => {
           onClick={() => setIsDialogOpen(true)}
           className="w-full"
         >
-          <span className="hidden sm:inline">Edit Code</span>
+          <span className="hidden sm:inline">Edit Title</span>
         </Button>
       </DialogTrigger>
       {isDialogOpen && (
@@ -79,13 +73,12 @@ export const EditDialogBox = ({ dataSet }: any) => {
             >
               <FormField
                 control={form.control}
-                name="title"
+                name="prompt"
                 render={({ field }) => (
                   <FormItem>
                     <FormLabel>Name</FormLabel>
                     <FormControl>
                       <Input
-                        placeholder="Python code to verify email address."
                         {...field}
                       />
                     </FormControl>
@@ -96,13 +89,13 @@ export const EditDialogBox = ({ dataSet }: any) => {
 
               <FormField
                 control={form.control}
-                name="code"
+                name="generatedCode"
+                disabled
                 render={({ field }) => (
                   <FormItem>
                     <FormLabel>Code</FormLabel>
                     <FormControl>
                       <Textarea
-                        placeholder="Paste code here"
                         className="resize-none"
                         rows={20}
                         {...field}

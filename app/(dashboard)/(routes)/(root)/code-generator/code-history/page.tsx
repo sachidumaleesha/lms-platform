@@ -24,8 +24,6 @@ export default async function CodeHistory() {
     },
   });
 
-  console.log(codeHistory)
-
   return (
     <div className="px-4 lg:px-8 py-4">
       <div>
