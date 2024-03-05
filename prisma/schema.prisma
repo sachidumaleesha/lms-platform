@@ -144,11 +144,12 @@ model CodeSnippet {
   updatedAt DateTime @updatedAt
 }
 
-model ImageToCode {
-  id       String @id @default(uuid())
-  userId   String
-  imageUrl String
+model GeneratedCode {
+  id            String @id @default(uuid())
+  userId        String
+  prompt        String
+  generatedCode String
 
   createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  updateAt  DateTime @updatedAt
 }
