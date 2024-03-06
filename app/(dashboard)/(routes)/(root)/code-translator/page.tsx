@@ -27,13 +27,13 @@ import { useRouter } from "next/navigation";
 
 const FormSchema = z.object({
   fromLanguage: z.string().min(2, {
-    message: "Username must be at least 2 characters.",
+    message: "language must be at least 2 characters.",
   }),
   toLanguage: z.string().min(2, {
-    message: "Username must be at least 2 characters.",
+    message: "language must be at least 2 characters.",
   }),
   code: z.string().min(10, {
-    message: "Bio must be at least 10 characters.",
+    message: "Code must be at least 10 characters.",
   }),
 });
 
@@ -110,7 +110,7 @@ export default function CodeTranslator() {
                   <FormLabel>Code</FormLabel>
                   <FormControl>
                     <Textarea
-                      placeholder="Tell us a little bit about yourself"
+                      placeholder="e.g: const number = 4"
                       className="resize-none"
                       rows={15}
                       {...field}

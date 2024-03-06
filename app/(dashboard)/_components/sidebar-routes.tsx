@@ -34,7 +34,7 @@ const guestRoutes = [
   {
     icon: Languages,
     label: "AI Code Translator",
-    href: "/ai-code-translator",
+    href: "/code-translator",
   },
   {
     icon: Terminal,

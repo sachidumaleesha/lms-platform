@@ -153,3 +153,14 @@ model GeneratedCode {
   createdAt DateTime @default(now())
   updateAt  DateTime @updatedAt
 }
+
+model CodeDebugger {
+  id       String @id @default(uuid())
+  userId   String
+  language String
+  code     String
+  solution String
+
+  createdAt DateTime @default(now())
+  updateAt  DateTime @updatedAt
+}
