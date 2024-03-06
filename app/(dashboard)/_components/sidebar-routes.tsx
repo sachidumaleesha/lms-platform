@@ -1,6 +1,6 @@
 "use client";
 
-import { BarChart, Braces, Code, Compass, Bot, Layout, List, FileCheck, Terminal, Image } from "lucide-react";
+import { BarChart, Braces, Code, Compass, Bot, Layout, List, FileCheck, Terminal, Image, Languages } from "lucide-react";
 import { usePathname } from "next/navigation";
 
 import { SidebarItem } from "./sidebar-item";
@@ -30,6 +30,11 @@ const guestRoutes = [
     icon: Bot,
     label: "Code Assistant",
     href: "/code-assistant",
+  },
+  {
+    icon: Languages,
+    label: "AI Code Translator",
+    href: "/ai-code-translator",
   },
   {
     icon: Terminal,

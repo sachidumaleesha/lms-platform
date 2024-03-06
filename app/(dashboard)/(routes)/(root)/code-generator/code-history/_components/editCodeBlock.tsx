@@ -61,7 +61,7 @@ export const EditCodeBlock = ({ dataSet }: any) => {
           onClick={() => setIsDialogOpen(true)}
           className="w-full"
         >
-          <span className="hidden sm:inline">Edit Title</span>
+          <span>Edit Title</span>
         </Button>
       </DialogTrigger>
       {isDialogOpen && (

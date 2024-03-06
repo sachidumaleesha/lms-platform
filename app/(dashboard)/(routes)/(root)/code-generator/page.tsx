@@ -115,7 +115,7 @@ export default function codeGenerator() {
             )}
             {!generatedCode &&
               (loading ? (
-                <div className="p-5 border border-dashed border-black rounded-md">
+                <div className="p-5 overflow-auto border border-dashed border-black rounded-md">
                   <pre>Code Line Here</pre>
                   <div className="space-y-2 mt-2">
                     <Skeleton className="h-4 w-[550px] bg-slate-400" />

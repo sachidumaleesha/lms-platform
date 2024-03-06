@@ -1,35 +1,31 @@
+import { auth } from "@clerk/nextjs";
 import { NextResponse } from "next/server";
-
 const {
   GoogleGenerativeAI,
   HarmCategory,
   HarmBlockThreshold,
 } = require("@google/generative-ai");
 
-import axios from "axios";
-import { auth } from "@clerk/nextjs";
+const MODEL_NAME = "gemini-1.0-pro";
+const API_KEY = process.env.GEMINI_API;
 
 export async function POST(req: Request) {
+  const { userId } = auth();
+  const { fromLanguage, toLanguage, code } = await req.json();
 
-  const {userId} = auth();
-
-  if(!userId){
-    return new NextResponse("Unauthorized", {status: 401})
+  if (!userId) {
+    return new NextResponse("Unauthorized", { status: 401 });
   }
-
-  const { imageUrl } = await req.json();
-  const MODEL_NAME = "gemini-1.0-pro-vision-latest";
-  const API_KEY = process.env.GEMINI_API;
 
   try {
     const genAI = new GoogleGenerativeAI(API_KEY);
     const model = genAI.getGenerativeModel({ model: MODEL_NAME });
 
     const generationConfig = {
-      temperature: 0.4,
-      topK: 32,
+      temperature: 0.9,
+      topK: 1,
       topP: 1,
-      maxOutputTokens: 4096,
+      maxOutputTokens: 2048,
     };
 
     const safetySettings = [
@@ -51,20 +47,9 @@ export async function POST(req: Request) {
       },
     ];
 
-    const imageResponse = await axios.get(imageUrl, {
-      responseType: "arraybuffer",
-    });
-    const imageBase64 = Buffer.from(imageResponse.data).toString("base64");
-
     const parts = [
       {
-        inlineData: {
-          mimeType: "image/png",
-          data: imageBase64,
-        },
-      },
-      {
-        text: "\n\nGive me the code of the above image with proper indentation. \n\n",
+        text: `Translate the following code from ${fromLanguage} to ${toLanguage}: ${code}`,
       },
     ];
 
@@ -74,9 +59,10 @@ export async function POST(req: Request) {
       safetySettings,
     });
 
-    return NextResponse.json(result);
+    const response = result.response;
+    return NextResponse.json(response);
   } catch (error) {
-    console.log("[ImageToCode]", error);
+    console.log("[CodeTranslator]", error);
     return new NextResponse("Internal Error", { status: 500 });
   }
 }
