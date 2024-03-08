@@ -58,6 +58,7 @@ export default function CodeAssistant() {
 
       setAnswer(response.data);
       toast.success("Generating answer...");
+      form.reset();
     } catch (error) {
       console.error("Error assistant code:", error);
       toast.error("Something went wrong");

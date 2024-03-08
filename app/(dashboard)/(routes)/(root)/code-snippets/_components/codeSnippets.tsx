@@ -44,7 +44,7 @@ export const CodeSnippets: React.FC<CodeSnippetsProps> = ({ data }) => {
     <div>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 w-full">
         {data.map((codeSnippet) => (
-          <Card>
+          <Card key={codeSnippet.id}>
             <CardHeader>
               <CardTitle className="line-clamp-1">{codeSnippet.title}</CardTitle>
             </CardHeader>
