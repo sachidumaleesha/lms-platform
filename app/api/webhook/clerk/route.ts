@@ -57,18 +57,19 @@ export async function POST(req: Request) {
   if (eventType === "user.created") {
     const { id, email_addresses, username, first_name, last_name, image_url } = evt.data;
     
-    const user = await db.user.create({
-        data: {
-            clerkId: id,
-            email: email_addresses[0].email_address,
-            username: username!,
-            firstName: first_name,
-            lastName: last_name,
-            photo: image_url
-        }
-    })
+    // const user = await db.user.create({
+    //     data: {
+    //         clerkId: id,
+    //         email: email_addresses[0].email_address,
+    //         username: username!,
+    //         firstName: first_name,
+    //         lastName: last_name,
+    //         photo: image_url
+    //     }
+    // })
 
-    return NextResponse.json({message: "OK", user: user})
+    // return NextResponse.json({message: "OK", user: user})
+    return NextResponse.json({message: "OK"})
   }
 
   console.log(`Webhook with and ID of ${id} and type of ${eventType}`);

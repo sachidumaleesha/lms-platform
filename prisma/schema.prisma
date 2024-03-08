@@ -8,20 +8,6 @@ generator client {
   previewFeatures = ["fullTextSearch", "fullTextIndex"]
 }
 
-// model User {
-//   userId   String @id @default(uuid())
-//   email     String
-//   username  String
-//   firstName String
-//   lastName  String
-//   photo     String
-
-//   createdAt DateTime @default(now())
-//   updatedAt DateTime @updatedAt
-
-//   Notes Note[]
-// }
-
 model Course {
   id          String  @id @default(uuid())
   userId      String
