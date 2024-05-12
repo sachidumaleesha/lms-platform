@@ -38,8 +38,12 @@ export async function generateCode(prompt: string) {
     ];
   
     const parts = [
-      {text:`generate a good quality code based on the {prompt} given by the user. The code should be proper indentation well-structured and do not use unnecessary characters in the code. And make sure to use proper comments.\n\n\n  prompt: ${prompt}`},
+      {
+        text: "generate a good quality code based on the {prompt} given by the user. The code should have proper indentation, be well-structured, and not use unnecessary characters. Ensure to use proper comments. Do not add any special characters (e.g: ```, ```html, ```python etc) at the beginning and end of the code block. prompt:" + prompt + "do not include ``` in the code block."
+      }
     ];
+    
+    
   
     const result = await model.generateContent({
       contents: [{ role: "user", parts }],

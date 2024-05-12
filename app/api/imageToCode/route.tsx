@@ -4,7 +4,7 @@ import { auth } from "@clerk/nextjs";
 import Anthropic from '@anthropic-ai/sdk';
 
 const anthropic = new Anthropic({
-  apiKey: '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',
+  apiKey: process.env.CLAUDE_API,
 });
 
 export async function POST(req: Request) {
@@ -24,7 +24,7 @@ export async function POST(req: Request) {
       model: "claude-3-opus-20240229",
       max_tokens: 1000,
       temperature: 0,
-      system: "Give me the code of the above image with proper indentation.",
+      system: "Give me the code of the above image with proper indentation and do not give any explanation. Do not add any special characters (e.g: ```, ```html, ```python etc) at the beginning and end of the code block.",
       messages: [
         {
           "role": "user",

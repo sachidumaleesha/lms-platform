@@ -29,7 +29,9 @@ interface ChaptersFormProps {
 };
 
 const formSchema = z.object({
-  title: z.string().min(1),
+  title: z.string().min(10, {
+    message: "Title must be at least 10 characters.",
+  }),
 });
 
 export const ChaptersForm = ({
