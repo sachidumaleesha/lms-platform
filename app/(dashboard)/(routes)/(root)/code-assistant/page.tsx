@@ -84,27 +84,53 @@ export default function CodeAssistant() {
 
             {/* cards */}
             <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 p-5">
-              <div className="h-52 p-4 bg-[#f0f4f9] rounded-md relative cursor-pointer hover:bg-[#dfe4ea]" onClick={() => handleSuggestionClick("Suggest beautiful places to see on an upcoming road trip")}>
+              <div
+                className="h-52 p-4 bg-[#f0f4f9] rounded-md relative cursor-pointer hover:bg-[#dfe4ea]"
+                onClick={() =>
+                  handleSuggestionClick(
+                    "How to become a frontend developer in 2024 and get a job"
+                  )
+                }
+              >
                 <p className="text-[#585858] text-lg">
-                  Suggest beautiful places to see on an upcoming road trip
+                  How to become a frontend developer in 2024 and get a job
                 </p>
                 <Aperture className="w-8 h-8 p-1 absolute bg-white rounded-md bottom-2 right-2" />
               </div>
-              <div className="h-52 p-4 bg-[#f0f4f9] rounded-md relative cursor-pointer hover:bg-[#dfe4ea]">
+              <div
+                className="h-52 p-4 bg-[#f0f4f9] rounded-md relative cursor-pointer hover:bg-[#dfe4ea]"
+                onClick={() =>
+                  handleSuggestionClick("How to write test cases for API with JEST, Mocha and Chai")
+                }
+              >
                 <p className="text-[#585858] text-lg">
-                  Suggest beautiful places to see on an upcoming road trip
+                  How to write test cases for NextJs API with JEST, Mocha and Chai
                 </p>
                 <Aperture className="w-8 h-8 p-1 absolute bg-white rounded-md bottom-2 right-2" />
               </div>
-              <div className="h-52 p-4 bg-[#f0f4f9] rounded-md relative cursor-pointer hover:bg-[#dfe4ea]">
+              <div
+                className="h-52 p-4 bg-[#f0f4f9] rounded-md relative cursor-pointer hover:bg-[#dfe4ea]"
+                onClick={() =>
+                  handleSuggestionClick(
+                    "How to train a machine learning model with langchain in 5 minutes"
+                  )
+                }
+              >
                 <p className="text-[#585858] text-lg">
-                  Suggest beautiful places to see on an upcoming road trip
+                  How to train a machine learning model with langchain in 5 minutes
                 </p>
                 <Aperture className="w-8 h-8 p-1 absolute bg-white rounded-md bottom-2 right-2" />
               </div>
-              <div className="h-52 p-4 bg-[#f0f4f9] rounded-md relative cursor-pointer hover:bg-[#dfe4ea]">
+              <div
+                className="h-52 p-4 bg-[#f0f4f9] rounded-md relative cursor-pointer hover:bg-[#dfe4ea]"
+                onClick={() =>
+                  handleSuggestionClick(
+                    "How to level up coding skills with Python and JavaScript"
+                  )
+                }
+              >
                 <p className="text-[#585858] text-lg">
-                  Suggest beautiful places to see on an upcoming road trip
+                  How to level up coding skills with Python and JavaScript
                 </p>
                 <Aperture className="w-8 h-8 p-1 absolute bg-white rounded-md bottom-2 right-2" />
               </div>
@@ -180,32 +206,31 @@ export default function CodeAssistant() {
           <div className="mb-10 absolute bottom-0">
             <div className="max-w-[900px] mx-auto">
               <Form {...form}>
-              <form
-                onSubmit={form.handleSubmit(onSubmit)}
-                className="flex gap-2"
-              >
-                <FormField
-                  control={form.control}
-                  name="question"
-                  render={({ field }) => (
-                    <FormItem className="flex-grow">
-                      <FormControl className="flex-grow">
-                        <Input
-                          placeholder="How to become a good developer?"
-                          {...field}
-                        />
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
-                <Button type="submit">
-                  <Send />
-                </Button>
-              </form>
-            </Form>
+                <form
+                  onSubmit={form.handleSubmit(onSubmit)}
+                  className="flex gap-2"
+                >
+                  <FormField
+                    control={form.control}
+                    name="question"
+                    render={({ field }) => (
+                      <FormItem className="flex-grow">
+                        <FormControl className="flex-grow">
+                          <Input
+                            placeholder="How to become a good developer?"
+                            {...field}
+                          />
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+                  <Button type="submit">
+                    <Send />
+                  </Button>
+                </form>
+              </Form>
             </div>
-            
           </div>
         </div>
       </div>

@@ -48,6 +48,7 @@ export default function CodeDebugger() {
 
   async function onSubmit(data: z.infer<typeof FormSchema>) {
     try {
+      setTranslatedCode(null);
       setLoading(true);
       const response = await axios.post("/api/codeDebugger", data);
       if (response) {

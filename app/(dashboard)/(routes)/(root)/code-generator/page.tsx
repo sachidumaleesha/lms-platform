@@ -45,11 +45,13 @@ export default function CodeGenerator() {
 
   async function onSubmit(data: z.infer<typeof FormSchema>) {
     try {
+      setGeneratedCode(null);
       setLoading(true);
       const response = await axios.post("/api/codeGenerator/", data);
       toast.success("Code generated successfully");
       console.log(response);
       if (response) {
+        console.log(response.data.generatedCode);
         setGeneratedCode(response.data.generatedCode);
       } else {
         throw new Error("Invalid response format");

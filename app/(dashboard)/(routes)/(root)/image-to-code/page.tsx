@@ -48,8 +48,9 @@ export default function ImageToCode() {
       setLoading(true);
       const response = await axios.post("/api/imageToCode", { imageUrl });
       if (response) {
+        console.log(response);
         setGeneratedCode(
-          response.data.response.candidates[0].content.parts[0].text
+          response.data.content[0].text
         );
       } else {
         throw new Error("Invalid response format");
